@@ -29,7 +29,7 @@ export default function ProblemsPage() {
     {
       id: "advanced",
       title: "Advanced Problems",
-      description: "고급 알고리즘을 이용한 고난도 응용문제",
+      description: "고급 알고리즘을 이용한 고난도 응용 문제",
       count: 8,
       href: "/problems/advanced",
     },
