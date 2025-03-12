@@ -86,7 +86,7 @@ export default function DashboardPage() {
                       <Code className="h-4 w-4 text-primary" />
                     </div>
                     <div className="flex-1 space-y-1">
-                      <p className="text-sm font-medium leading-none">Solved "Fibonacci Sequence"</p>
+                      <p className="text-sm font-medium leading-none">Solved Fibonacci Sequence</p>
                       <p className="text-sm text-muted-foreground">2 days ago</p>
                     </div>
                   </div>
@@ -95,7 +95,7 @@ export default function DashboardPage() {
                       <BookOpen className="h-4 w-4 text-primary" />
                     </div>
                     <div className="flex-1 space-y-1">
-                      <p className="text-sm font-medium leading-none">Completed "Python Basics" lesson</p>
+                      <p className="text-sm font-medium leading-none">Completed Python Basics lesson</p>
                       <p className="text-sm text-muted-foreground">3 days ago</p>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ export default function DashboardPage() {
                       <Brain className="h-4 w-4 text-primary" />
                     </div>
                     <div className="flex-1 space-y-1">
-                      <p className="text-sm font-medium leading-none">Started "Build a Chatbot" project</p>
+                      <p className="text-sm font-medium leading-none">Started Build a Chatbot project</p>
                       <p className="text-sm text-muted-foreground">1 week ago</p>
                     </div>
                   </div>
@@ -114,7 +114,7 @@ export default function DashboardPage() {
             <Card className="col-span-3">
               <CardHeader>
                 <CardTitle>Upcoming Events</CardTitle>
-                <CardDescription>Don't miss these important dates</CardDescription>
+                <CardDescription>Dont miss these important dates</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
