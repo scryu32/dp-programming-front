@@ -174,37 +174,6 @@ export default function IntermediateProblemsPage() {
                 </Link>
               ))}
             </div>
-
-            <div className="mt-8 p-6 border rounded-lg">
-              <h3 className="text-lg font-medium mb-4">문제 풀이 설명</h3>
-              <p className="text-muted-foreground mb-4">
-                이 섹션에서는 {category.name} 관련 문제를 풀 때 알아야 할 핵심 개념과 팁을 제공합니다.
-              </p>
-              <div className="prose max-w-none">
-                <p>
-                  {category.id === "variables" &&
-                    "변수는 데이터를 저장하는 컨테이너입니다. 자료형에는 숫자(number), 문자열(string), 불리언(boolean) 등이 있습니다. 중급 수준에서는 복합 자료형과 스코프에 대한 이해가 중요합니다."}
-                  {category.id === "conditionals" &&
-                    "조건문은 특정 조건이 참인지 거짓인지에 따라 다른 코드 블록을 실행합니다. 중급 수준에서는 조건문의 최적화와 다양한 패턴을 학습합니다."}
-                  {category.id === "loops" &&
-                    "반복문은 코드 블록을 여러 번 실행하는 데 사용됩니다. 중급 수준에서는 반복문의 성능과 고급 패턴에 집중합니다."}
-                  {category.id === "arrays" &&
-                    "배열은 여러 값을 하나의 변수에 저장할 수 있는 자료구조입니다. 중급 수준에서는 다차원 배열과 고급 배열 메소드를 학습합니다."}
-                </p>
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-                  <code>
-                    {category.id === "variables" &&
-                      `// 복합 자료형 예시\nconst person = {\n  name: "홍길동",\n  age: 25,\n  skills: ["JavaScript", "Python", "React"],\n  address: {\n    city: "서울",\n    district: "강남구"\n  }\n};\n\n// 구조 분해 할당\nconst { name, skills: [primarySkill] } = person;\nconsole.log(name, primarySkill); // 홍길동 JavaScript`}
-                    {category.id === "conditionals" &&
-                      `// 중첩 조건문 최적화\n// 기존 코드\nif (age >= 18) {\n  if (hasLicense) {\n    if (experience > 2) {\n      console.log("운전 가능");\n    }\n  }\n}\n\n// 최적화 코드\nif (age >= 18 && hasLicense && experience > 2) {\n  console.log("운전 가능");\n}`}
-                    {category.id === "loops" &&
-                      `// 배열 메소드를 활용한 반복\nconst numbers = [1, 2, 3, 4, 5];\n\n// 기존 for 반복문\nlet sum = 0;\nfor (let i = 0; i < numbers.length; i++) {\n  sum += numbers[i];\n}\n\n// 배열 메소드 활용\nconst sum2 = numbers.reduce((acc, curr) => acc + curr, 0);\nconsole.log(sum, sum2); // 15 15`}
-                    {category.id === "arrays" &&
-                      `// 다차원 배열 예시\nconst matrix = [\n  [1, 2, 3],\n  [4, 5, 6],\n  [7, 8, 9]\n];\n\n// 대각선 요소의 합 계산\nlet diagonalSum = 0;\nfor (let i = 0; i < matrix.length; i++) {\n  diagonalSum += matrix[i][i];\n}\n\nconsole.log(diagonalSum); // 15 (1 + 5 + 9)`}
-                  </code>
-                </pre>
-              </div>
-            </div>
           </TabsContent>
         ))}
       </Tabs>

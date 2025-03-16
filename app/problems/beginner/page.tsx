@@ -13,10 +13,10 @@ export default function BeginnerProblemsPage() {
       problems: [
         {
           id: 1,
-          title: "변수 선언하기",
-          description: "다양한 자료형의 변수를 선언하고 값을 할당하는 방법을 배웁니다.",
+          title: "변수 계산하기",
+          description: "변수에 할당된 값을 계산하는 방법을 학습합니다.",
           difficulty: "Easy",
-          link: "https://example.com/problems/variables-declaration",
+          link: "/problems/beginner/variable-1",
         },
         {
           id: 2,
@@ -222,42 +222,6 @@ export default function BeginnerProblemsPage() {
                   </Card>
                 </Link>
               ))}
-            </div>
-
-            <div className="mt-8 p-6 border rounded-lg">
-              <h3 className="text-lg font-medium mb-4">문제 풀이 설명</h3>
-              <p className="text-muted-foreground mb-4">
-                이 섹션에서는 {category.name} 관련 문제를 풀 때 알아야 할 핵심 개념과 팁을 제공합니다.
-              </p>
-              <div className="prose max-w-none">
-                {/* 여기에 각 카테고리별 문제 풀이 설명을 추가할 수 있습니다 */}
-                <p>
-                  {category.id === "variables" &&
-                    "변수는 데이터를 저장하는 컨테이너입니다. 자료형에는 숫자(number), 문자열(string), 불리언(boolean) 등이 있습니다."}
-                  {category.id === "conditionals" &&
-                    "조건문은 특정 조건이 참인지 거짓인지에 따라 다른 코드 블록을 실행합니다. if, else if, else 구문을 사용합니다."}
-                  {category.id === "loops" &&
-                    "반복문은 코드 블록을 여러 번 실행하는 데 사용됩니다. for 반복문은 정해진 횟수만큼, while 반복문은 조건이 참인 동안 실행됩니다."}
-                  {category.id === "arrays" &&
-                    "배열은 여러 값을 하나의 변수에 저장할 수 있는 자료구조입니다. 인덱스를 통해 개별 요소에 접근할 수 있습니다."}
-                  {category.id === "functions" &&
-                    "함수는 특정 작업을 수행하는 코드 블록으로, 코드의 재사용성을 높이고 모듈화하는 데 도움이 됩니다."}
-                </p>
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-                  <code>
-                    {category.id === "variables" &&
-                      `// 변수 선언 예시\nlet number = 42;\nconst text = "Hello, World!";\nlet isActive = true;`}
-                    {category.id === "conditionals" &&
-                      `// 조건문 예시\nif (score >= 90) {\n  console.log("A 등급");\n} else if (score >= 80) {\n  console.log("B 등급");\n} else {\n  console.log("C 등급");\n}`}
-                    {category.id === "loops" &&
-                      `// 반복문 예시\n// for 반복문\nfor (let i = 0; i < 5; i++) {\n  console.log(i);\n}\n\n// while 반복문\nlet i = 0;\nwhile (i < 5) {\n  console.log(i);\n  i++;\n}`}
-                    {category.id === "arrays" &&
-                      `// 배열 예시\nconst fruits = ["사과", "바나나", "오렌지"];\nconsole.log(fruits[0]); // "사과"\n\n// 배열 순회\nfor (let i = 0; i < fruits.length; i++) {\n  console.log(fruits[i]);\n}`}
-                    {category.id === "functions" &&
-                      `// 함수 예시\nfunction add(a, b) {\n  return a + b;\n}\n\n// 함수 호출\nconst result = add(5, 3);\nconsole.log(result); // 8\n\n// 화살표 함수\nconst multiply = (a, b) => a * b;`}
-                  </code>
-                </pre>
-              </div>
             </div>
           </TabsContent>
         ))}

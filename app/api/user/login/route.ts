@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     const token = jwt.sign(
       { userId: user.userId, email: user.email, id: user._id },
       jwtSecret,
-      { expiresIn: "1h" }
+      { expiresIn: "6h" }
     );
 
     // NextResponse 객체를 만들어 쿠키를 설정

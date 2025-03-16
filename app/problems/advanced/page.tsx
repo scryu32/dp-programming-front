@@ -141,33 +141,6 @@ export default function AdvancedProblemsPage() {
                 </Link>
               ))}
             </div>
-
-            <div className="mt-8 p-6 border rounded-lg">
-              <h3 className="text-lg font-medium mb-4">문제 풀이 설명</h3>
-              <p className="text-muted-foreground mb-4">
-                이 섹션에서는 {category.name} 관련 문제를 풀 때 알아야 할 핵심 개념과 팁을 제공합니다.
-              </p>
-              <div className="prose max-w-none">
-                <p>
-                  {category.id === "algorithms" &&
-                    "고급 알고리즘은 복잡한 문제를 효율적으로 해결하기 위한 전략입니다. 분할 정복, 동적 프로그래밍, 그리디 알고리즘 등 다양한 패러다임을 이해하고 적용하는 능력이 중요합니다."}
-                  {category.id === "data-structures" &&
-                    "자료구조는 데이터를 효율적으로 저장하고 접근하기 위한 특별한 형태의 구조입니다. 트리, 그래프, 해시 테이블 등의 고급 자료구조를 이해하면 복잡한 문제를 더 효율적으로 해결할 수 있습니다."}
-                  {category.id === "optimization" &&
-                    "최적화는 알고리즘의 시간 및 공간 복잡도를 개선하는 과정입니다. 효율적인 알고리즘 설계는 대규모 데이터를 처리하는 데 필수적입니다."}
-                </p>
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-                  <code>
-                    {category.id === "algorithms" &&
-                      `// 동적 프로그래밍 예시 - 피보나치 수열\n// 일반적인 재귀 구현 (비효율적)\nfunction fibonacci(n) {\n  if (n <= 1) return n;\n  return fibonacci(n - 1) + fibonacci(n - 2);\n}\n\n// 동적 프로그래밍 구현 (메모이제이션)\nfunction fibonacciDP(n, memo = {}) {\n  if (n in memo) return memo[n];\n  if (n <= 1) return n;\n  \n  memo[n] = fibonacciDP(n - 1, memo) + fibonacciDP(n - 2, memo);\n  return memo[n];\n}\n\nconsole.log(fibonacciDP(40)); // 빠르게 계산됨`}
-                    {category.id === "data-structures" &&
-                      `// 이진 검색 트리 구현\nclass Node {\n  constructor(value) {\n    this.value = value;\n    this.left = null;\n    this.right = null;\n  }\n}\n\nclass BinarySearchTree {\n  constructor() {\n    this.root = null;\n  }\n\n  insert(value) {\n    const newNode = new Node(value);\n    \n    if (!this.root) {\n      this.root = newNode;\n      return this;\n    }\n    \n    let current = this.root;\n    \n    while (true) {\n      if (value === current.value) return this;\n      \n      if (value < current.value) {\n        if (!current.left) {\n          current.left = newNode;\n          return this;\n        }\n        current = current.left;\n      } else {\n        if (!current.right) {\n          current.right = newNode;\n          return this;\n        }\n        current = current.right;\n      }\n    }\n  }\n}`}
-                    {category.id === "optimization" &&
-                      `// 시간 복잡도 개선 예시\n// O(n²) 시간 복잡도\nfunction hasDuplicates(array) {\n  for (let i = 0; i < array.length; i++) {\n    for (let j = i + 1; j < array.length; j++) {\n      if (array[i] === array[j]) return true;\n    }\n  }\n  return false;\n}\n\n// O(n) 시간 복잡도로 개선\nfunction hasDuplicatesOptimized(array) {\n  const seen = new Set();\n  \n  for (const item of array) {\n    if (seen.has(item)) return true;\n    seen.add(item);\n  }\n  \n  return false;\n}`}
-                  </code>
-                </pre>
-              </div>
-            </div>
           </TabsContent>
         ))}
       </Tabs>

@@ -3,8 +3,35 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Code, Brain, BookOpen } from "lucide-react"
 import HeroSection from "@/components/hero-section"
 import FeatureCard from "@/components/feature-card"
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
+import { JwtPayload } from "jsonwebtoken";
 
-export default function Home() {
+export async function getUserFromCookie() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  const jwtSecret = process.env.JWT_SECRET;
+
+  if (!jwtSecret) {
+    throw new Error("JWT_SECRET is not defined in environment variables");
+  }
+
+  try {
+    // JWT 검증 및 디코딩
+    if (token) {
+      const user = jwt.verify(token, jwtSecret) as JwtPayload;
+      return user; // 인증된 사용자 반환
+    }
+    return null; // 토큰 없으면 로그인 안 된 상태
+  } catch (error) {
+    return null; // 오류 발생 시 로그인 안 된 상태
+  }
+}
+
+
+export default async function Home() {
+  const user = await getUserFromCookie();
   return (
     <main className="flex min-h-screen flex-col">
       <HeroSection />
@@ -33,14 +60,25 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center mt-12">
-          <Link href="/register">
-            <Button size="lg" className="gap-2">
-              Join Ctrl V <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
+
+        {user? (
+          <Link href="/dashboard">
+          <Button size="lg" className="gap-2">
+            Check Dashboard
+          </Button>
+        </Link>
+          ) : (
+            <Link href="/register">
+              <Button size="lg" className="gap-2">
+                Join Ctrl V <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>)
+          }
+          
         </div>
       </section>
 
+      {user?(<div></div>) : (
       <section className="bg-muted py-12">
         <div className="container">
           <div className="flex flex-col items-center justify-center text-center">
@@ -60,7 +98,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section>)}
     </main>
   )
 }

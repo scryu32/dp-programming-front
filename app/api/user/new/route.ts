@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     // 비밀번호 해싱
     const hashedPassword = await hashPassword(password);
 
-    // 데이터 저장
+    // 사용자 데이터 저장
     await usersCollection.insertOne({
       name,
       userId,
@@ -30,6 +30,15 @@ export async function POST(req: NextRequest) {
       grade,
       studentId,
       password: hashedPassword,
+      createdAt: new Date(),
+    });
+
+    // ranking 컬렉션에 초기 데이터 생성
+    const rankingCollection = db.collection("ranking");
+    await rankingCollection.insertOne({
+      userId,
+      score: 0,               // 초기 점수 0점
+      solvedProblems: [],     // 해결한 문제 목록 초기화
       createdAt: new Date(),
     });
 

@@ -155,33 +155,6 @@ export default function CompetitiveProblemsPage() {
                 </Link>
               ))}
             </div>
-
-            <div className="mt-8 p-6 border rounded-lg">
-              <h3 className="text-lg font-medium mb-4">문제 풀이 설명</h3>
-              <p className="text-muted-foreground mb-4">
-                이 섹션에서는 {category.name} 관련 문제를 풀 때 알아야 할 핵심 개념과 팁을 제공합니다.
-              </p>
-              <div className="prose max-w-none">
-                <p>
-                  {category.id === "graph-algorithms" &&
-                    "그래프 알고리즘은 노드와 간선으로 구성된 그래프 구조에서 다양한 문제를 해결하는 알고리즘입니다. 최단 경로, 최소 신장 트리, 네트워크 플로우 등 다양한 그래프 알고리즘을 이해하고 구현하는 능력이 필요합니다."}
-                  {category.id === "mathematical-algorithms" &&
-                    "수학적 알고리즘은 정수론, 조합론, 기하학 등 수학적 개념을 활용한 알고리즘입니다. 이러한 알고리즘은 암호학, 최적화 문제, 컴퓨터 그래픽스 등 다양한 분야에서 활용됩니다."}
-                  {category.id === "advanced-techniques" &&
-                    "고급 알고리즘 기법은 복잡한 문제를 효율적으로 해결하기 위한 특수한 자료구조와 알고리즘 최적화 방법입니다. 세그먼트 트리, 트라이, 동적 계획법 최적화 등의 기법을 이해하고 적용하는 능력이 중요합니다."}
-                </p>
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-                  <code>
-                    {category.id === "graph-algorithms" &&
-                      `// 다익스트라 알고리즘 구현 예시\nfunction dijkstra(graph, start) {\n  const distances = {};\n  const visited = {};\n  const previous = {};\n  const nodes = Object.keys(graph);\n  \n  // 초기화\n  for (let node of nodes) {\n    distances[node] = Infinity;\n    previous[node] = null;\n  }\n  distances[start] = 0;\n  \n  while (nodes.length) {\n    // 가장 가까운 노드 찾기\n    nodes.sort((a, b) => distances[a] - distances[b]);\n    const closest = nodes.shift();\n    \n    if (distances[closest] === Infinity) break;\n    visited[closest] = true;\n    \n    // 인접 노드 확인\n    for (let neighbor in graph[closest]) {\n      if (visited[neighbor]) continue;\n      \n      const newDistance = distances[closest] + graph[closest][neighbor];\n      if (newDistance < distances[neighbor]) {\n        distances[neighbor] = newDistance;\n        previous[neighbor] = closest;\n      }\n    }\n  }\n  \n  return { distances, previous };\n}`}
-                    {category.id === "mathematical-algorithms" &&
-                      `// 에라토스테네스의 체 - 소수 찾기 알고리즘\nfunction sieveOfEratosthenes(n) {\n  const primes = new Array(n + 1).fill(true);\n  primes[0] = primes[1] = false;\n  \n  for (let i = 2; i * i <= n; i++) {\n    if (primes[i]) {\n      for (let j = i * i; j <= n; j += i) {\n        primes[j] = false;\n      }\n    }\n  }\n  \n  const result = [];\n  for (let i = 2; i <= n; i++) {\n    if (primes[i]) result.push(i);\n  }\n  \n  return result;\n}\n\nconsole.log(sieveOfEratosthenes(100)); // 2부터 100까지의 소수 목록`}
-                    {category.id === "advanced-techniques" &&
-                      `// 세그먼트 트리 구현 예시\nclass SegmentTree {\n  constructor(arr) {\n    this.n = arr.length;\n    this.tree = new Array(4 * this.n).fill(0);\n    this.build(arr, 1, 0, this.n - 1);\n  }\n  \n  build(arr, node, start, end) {\n    if (start === end) {\n      this.tree[node] = arr[start];\n      return;\n    }\n    \n    const mid = Math.floor((start + end) / 2);\n    this.build(arr, 2 * node, start, mid);\n    this.build(arr, 2 * node + 1, mid + 1, end);\n    \n    this.tree[node] = this.tree[2 * node] + this.tree[2 * node + 1];\n  }\n  \n  query(node, start, end, left, right) {\n    if (left > end || right < start) return 0;\n    if (left <= start && end <= right) return this.tree[node];\n    \n    const mid = Math.floor((start + end) / 2);\n    const leftSum = this.query(2 * node, start, mid, left, right);\n    const rightSum = this.query(2 * node + 1, mid + 1, end, left, right);\n    \n    return leftSum + rightSum;\n  }\n  \n  update(node, start, end, idx, val) {\n    if (start === end) {\n      this.tree[node] = val;\n      return;\n    }\n    \n    const mid = Math.floor((start + end) / 2);\n    if (idx <= mid) {\n      this.update(2 * node, start, mid, idx, val);\n    } else {\n      this.update(2 * node + 1, mid + 1, end, idx, val);\n    }\n    \n    this.tree[node] = this.tree[2 * node] + this.tree[2 * node + 1];\n  }\n}`}
-                  </code>
-                </pre>
-              </div>
-            </div>
           </TabsContent>
         ))}
       </Tabs>
