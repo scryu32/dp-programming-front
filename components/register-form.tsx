@@ -11,10 +11,14 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Loader2 } from "lucide-react"
 
+// Update the form schema to include userId
 const formSchema = z
   .object({
     name: z.string().min(2, {
       message: "Name must be at least 2 characters.",
+    }),
+    userId: z.string().min(4, {
+      message: "User ID must be at least 4 characters.",
     }),
     email: z.string().email({
       message: "Please enter a valid email address.",
@@ -41,10 +45,12 @@ export default function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
+  // Update the defaultValues to include userId
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      userId: "",
       email: "",
       grade: "",
       studentId: "",
@@ -53,15 +59,32 @@ export default function RegisterForm() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+  
+    try {
+      const response = await fetch("/api/user/new", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+  
+      const result = await response.json();
 
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values)
-      setIsLoading(false)
-      router.push("/dashboard")
-    }, 1000)
+      if (!response.ok) {
+        alert(`회원가입 실패: ${result.error || "알 수 없는 오류"}`);
+        router.push("/");
+      } else {
+        alert("회원가입 성공! 로그인 페이지로 이동합니다.");
+        router.push("/login");
+      }
+    } catch (error) {
+      console.error("서버 통신 에러", error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -80,6 +103,21 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
+        {/* Add the userId field to the form after the name field */}
+        {/* Insert this code after the name FormField and before the email FormField: */}
+        <FormField
+          control={form.control}
+          name="userId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>User ID</FormLabel>
+              <FormControl>
+                <Input placeholder="UserId" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="email"
@@ -87,7 +125,7 @@ export default function RegisterForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="example@email.com" {...field} />
+                <Input placeholder="example@school.edu" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

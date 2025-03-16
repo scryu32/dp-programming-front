@@ -4,13 +4,16 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BookOpen, Code, Brain, Trophy } from "lucide-react"
+import { getUserFromCookie } from "@/lib/getUserFromCookie";
+
 
 export const metadata: Metadata = {
   title: "Dashboard - Ctrl V Programming Club",
   description: "Member dashboard for Ctrl V Programming Club",
 }
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const user = await getUserFromCookie();
   return (
     <div className="container py-10">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">

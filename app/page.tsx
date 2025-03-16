@@ -17,7 +17,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           <FeatureCard
             icon={<BookOpen className="h-10 w-10" />}
             title="Programming Grammar"
@@ -29,12 +29,6 @@ export default function Home() {
             title="Programming Problems"
             description="기초 문제부터 고난도 문제까지, 다양한 알고리즘을 학습하기 위한 문제집"
             href="/problems"
-          />
-          <FeatureCard
-            icon={<Brain className="h-10 w-10" />}
-            title="AI Concepts"
-            description="인공지능 시대를 대비하기 위한 최고의 설명서"
-            href="/ai"
           />
         </div>
 

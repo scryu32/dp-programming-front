@@ -10,9 +10,10 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Loader2 } from "lucide-react"
 
+// Update the form schema to use userId instead of email
 const formSchema = z.object({
-  email: z.string().email({
-    message: "Please enter a valid email address.",
+  userId: z.string().min(4, {
+    message: "User ID must be at least 4 characters.",
   }),
   password: z.string().min(8, {
     message: "Password must be at least 8 characters.",
@@ -23,36 +24,58 @@ export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
+  // Update the defaultValues
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
+      userId: "",
       password: "",
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
-
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values)
-      setIsLoading(false)
-      router.push("/dashboard")
-    }, 1000)
+  
+    try {
+      const response = await fetch("/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+  
+      const result = await response.json();
+  
+      if (!response.ok) {
+        alert(`로그인 실패: ${result.error || "알 수 없는 오류"}`);
+        console.error("로그인 실패", result);
+      } else {
+        alert("로그인 성공!");
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      alert("서버 통신 에러: 네트워크 문제 또는 서버 오류");
+      console.error("로그인 에러", error);
+    } finally {
+      setIsLoading(false);
+    }
   }
+  
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        {/* Replace the email FormField with userId FormField */}
+        {/* Replace the email FormField with this: */}
         <FormField
           control={form.control}
-          name="email"
+          name="userId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>User ID</FormLabel>
               <FormControl>
-                <Input placeholder="example@school.edu" {...field} />
+                <Input placeholder="yourUserId" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
