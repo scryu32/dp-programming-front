@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { JwtPayload } from "jsonwebtoken";
 
-export async function getUserFromCookie() {
+export default async function HeroSection() {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
@@ -14,20 +14,15 @@ export async function getUserFromCookie() {
     throw new Error("JWT_SECRET is not defined in environment variables");
   }
 
+  let user = null;
   try {
-    // JWT 검증 및 디코딩
     if (token) {
-      const user = jwt.verify(token, jwtSecret) as JwtPayload;
-      return user; // 인증된 사용자 반환
+      user = jwt.verify(token, jwtSecret) as JwtPayload;
     }
-    return null; // 토큰 없으면 로그인 안 된 상태
   } catch (error) {
-    return null; // 오류 발생 시 로그인 안 된 상태
+    // Handle error if JWT verification fails
+    user = null;
   }
-}
-
-export default async function HeroSection() {
-  const user = await getUserFromCookie();
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted">
       <div className="container px-4 md:px-6">

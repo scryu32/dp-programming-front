@@ -7,8 +7,7 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { JwtPayload } from "jsonwebtoken";
 
-// JWT 토큰을 쿠키에서 검사하는 함수
-export async function getUserFromCookie() {
+export default async function SiteHeader() {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
@@ -18,20 +17,15 @@ export async function getUserFromCookie() {
     throw new Error("JWT_SECRET is not defined in environment variables");
   }
 
+  let user = null;
   try {
-    // JWT 검증 및 디코딩
     if (token) {
-      const user = jwt.verify(token, jwtSecret) as JwtPayload;
-      return user; // 인증된 사용자 반환
+      user = jwt.verify(token, jwtSecret) as JwtPayload;
     }
-    return null; // 토큰 없으면 로그인 안 된 상태
   } catch (error) {
-    return null; // 오류 발생 시 로그인 안 된 상태
+    // Handle error if JWT verification fails
+    user = null;
   }
-}
-
-export default async function SiteHeader() {
-  const user = await getUserFromCookie(); // 로그인 상태 체크
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

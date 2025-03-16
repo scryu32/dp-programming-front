@@ -1,13 +1,15 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Code, Brain, BookOpen } from "lucide-react"
-import HeroSection from "@/components/hero-section"
-import FeatureCard from "@/components/feature-card"
-import { cookies } from "next/headers";
+// app/page.tsx
+
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Code, BookOpen } from "lucide-react";
+import HeroSection from "@/components/hero-section";
+import FeatureCard from "@/components/feature-card";
+import Link from "next/link";
 import jwt from "jsonwebtoken";
 import { JwtPayload } from "jsonwebtoken";
+import { cookies } from "next/headers"; // This is for server-side cookies in the App Directory
 
-export async function getUserFromCookie() {
+export default async function Home() {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
@@ -17,21 +19,16 @@ export async function getUserFromCookie() {
     throw new Error("JWT_SECRET is not defined in environment variables");
   }
 
+  let user = null;
   try {
-    // JWT 검증 및 디코딩
     if (token) {
-      const user = jwt.verify(token, jwtSecret) as JwtPayload;
-      return user; // 인증된 사용자 반환
+      user = jwt.verify(token, jwtSecret) as JwtPayload;
     }
-    return null; // 토큰 없으면 로그인 안 된 상태
   } catch (error) {
-    return null; // 오류 발생 시 로그인 안 된 상태
+    // Handle error if JWT verification fails
+    user = null;
   }
-}
 
-
-export default async function Home() {
-  const user = await getUserFromCookie();
   return (
     <main className="flex min-h-screen flex-col">
       <HeroSection />
@@ -60,46 +57,44 @@ export default async function Home() {
         </div>
 
         <div className="flex justify-center mt-12">
-
-        {user? (
-          <Link href="/dashboard">
-          <Button size="lg" className="gap-2">
-            Check Dashboard
-          </Button>
-        </Link>
+          {user ? (
+            <Link href="/dashboard">
+              <Button size="lg" className="gap-2">
+                Check Dashboard
+              </Button>
+            </Link>
           ) : (
             <Link href="/register">
               <Button size="lg" className="gap-2">
                 Join Ctrl V <ArrowRight className="h-4 w-4" />
               </Button>
-            </Link>)
-          }
-          
+            </Link>
+          )}
         </div>
       </section>
 
-      {user?(<div></div>) : (
-      <section className="bg-muted py-12">
-        <div className="container">
-          <div className="flex flex-col items-center justify-center text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Ready to start coding?</h2>
-            <p className="mt-4 text-muted-foreground md:text-xl max-w-[600px]">
-              Join our programming club today and begin your journey into the world of coding
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <Link href="/register">
-                <Button size="lg">Register Now</Button>
-              </Link>
-              <Link href="/login">
-                <Button size="lg" variant="outline">
-                  Login
-                </Button>
-              </Link>
+      {!user && (
+        <section className="bg-muted py-12">
+          <div className="container">
+            <div className="flex flex-col items-center justify-center text-center">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Ready to start coding?</h2>
+              <p className="mt-4 text-muted-foreground md:text-xl max-w-[600px]">
+                Join our programming club today and begin your journey into the world of coding
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <Link href="/register">
+                  <Button size="lg">Register Now</Button>
+                </Link>
+                <Link href="/login">
+                  <Button size="lg" variant="outline">
+                    Login
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>)}
+        </section>
+      )}
     </main>
-  )
+  );
 }
-
