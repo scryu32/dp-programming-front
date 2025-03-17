@@ -20,10 +20,10 @@ export default function BeginnerProblemsPage() {
         },
         {
           id: 2,
-          title: "자료형 변환",
-          description: "서로 다른 자료형 간의 변환 방법을 학습합니다.",
+          title: "자료형 기초",
+          description: "자료형에 대해 이해했는지 확인합니다.",
           difficulty: "Easy",
-          link: "https://example.com/problems/type-conversion",
+          link: "/problems/beginner/variable-2",
         },
         {
           id: 3,

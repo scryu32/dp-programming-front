@@ -2,8 +2,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { InfoIcon } from "lucide-react"
+import { getUserFromCookie } from "@/lib/getUserFromCookie";
 
-export default function VariablesAndDataTypesPage() {
+export default async function VariablesAndDataTypesPage() {
+  
+  const user = await getUserFromCookie();
   return (
     <div className="container py-10 max-w-4xl">
       <h1 className="text-4xl font-bold mb-6">변수와 자료형</h1>

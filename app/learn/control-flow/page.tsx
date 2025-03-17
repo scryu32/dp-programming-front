@@ -4,8 +4,10 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { InfoIcon, AlertTriangle, ArrowRight, CheckCircle2 } from "lucide-react"
+import { getUserFromCookie } from "@/lib/getUserFromCookie";
 
-export default function AlgorithmPage() {
+export default async function AlgorithmPage() {
+  const user = await getUserFromCookie();
   return (
     <div className="container py-10 max-w-5xl">
       <h1 className="text-4xl font-bold mb-6">알고리즘 (Algorithm)</h1>

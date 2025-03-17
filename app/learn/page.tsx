@@ -3,13 +3,15 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Code } from "lucide-react"
+import { getUserFromCookie } from "@/lib/getUserFromCookie";
 
 export const metadata: Metadata = {
   title: "Learn Programming - Ctrl V Programming Club",
   description: "Learn programming fundamentals with Ctrl V Programming Club",
 }
 
-export default function LearnPage() {
+export default async function LearnPage() {
+  const user = await getUserFromCookie();
   const programmingLanguages = [
     {
       id: "python",

@@ -10,6 +10,13 @@ export async function POST(request: NextRequest) {
     const db = (await connectToDatabase()).db("forum");
     const user = await db.collection("users").findOne({ userId });
     
+    if (!answers) {
+      return NextResponse.json(
+        { success: false, message: "정답이 없는데요" },
+        { status: 500 }
+      ); 
+    }
+
     if (user) {
       // 문제별 점수 설정
       const fivePointProblems = ["variable-1", "variable-2"];
@@ -21,6 +28,23 @@ export async function POST(request: NextRequest) {
       } else if (tenPointProblems.includes(problemName)) {
         points = 10;
       }
+
+      if (problemName == "variable-1") {
+        if ( JSON.stringify(answers) !== JSON.stringify(["8", "15", "1", "2", "125"]) ) {
+          return NextResponse.json(
+            { success: false, message: "넌 이문제 풀 단계가 아니다.." },
+            { status: 500 }
+          ); 
+        }
+      } else if (problemName == "variable-2") {
+        if ( JSON.stringify(answers) !== JSON.stringify(["int", "str", "float", "error"]) ) {
+          return NextResponse.json(
+            { success: false, message: "넌 이문제 풀 단계가 아니다.." },
+            { status: 500 }
+          ); 
+        }
+      }
+
 
       // 점수가 0이 아니면(즉, 점수를 부여할 문제라면)
       if (points > 0) {

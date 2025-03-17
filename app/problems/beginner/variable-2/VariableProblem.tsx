@@ -17,15 +17,15 @@ interface VariableProblem1Props {
   cookieData: string | JwtPayload
 }
 
-export default function VariableProblem1({ cookieData }: VariableProblem1Props) {
-  const [answers, setAnswers] = useState(["", "", "", "", ""])
+export default function VariableProblem2({ cookieData }: VariableProblem1Props) {
+  const [answers, setAnswers] = useState(["", "", "", ""])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showFeedback, setShowFeedback] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [statusMessage, setStatusMessage] = useState("")
 
-  const correctAnswers = ["8", "15", "1", "2", "125"]
+  const correctAnswers = ["int", "str", "float", "error"]
 
   const handleInputChange = (index: number, value: string) => {
     const newAnswers = [...answers]
@@ -50,7 +50,7 @@ export default function VariableProblem1({ cookieData }: VariableProblem1Props) 
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          problemName: "variable-1",
+          problemName: "variable-2",
           answers: answers,
           cookieData, // 쿠키 데이터를 함께 전송할 수도 있음
         }),
@@ -75,7 +75,7 @@ export default function VariableProblem1({ cookieData }: VariableProblem1Props) 
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
           <div className="flex justify-between items-center">
-            <CardTitle className="text-2xl">변수 연산 문제 #1</CardTitle>
+            <CardTitle className="text-2xl">자료형 계산 문제</CardTitle>
             <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
               Easy
             </Badge>
@@ -84,14 +84,23 @@ export default function VariableProblem1({ cookieData }: VariableProblem1Props) 
         </CardHeader>
         <CardContent>
           <div className="bg-slate-50 p-4 rounded-md font-mono text-sm">
-            <pre>{`x = 5
-y = 3
-z = x + y
-print(z)
-print(x * y)
-print(x // y)
-print(x % y)
-print(x ** y)`}</pre>
+            <pre>{`x = 2
+y = "25"
+z = 3.14
+# type()함수는 자료형의 형식을 의미하며, int, str, float 등의 출력값으로 이루어져있습니다.
+# 수업을 잘 들었다면 각각 어떤 자료형인지 알겠죠? ^^
+print(type(x))
+print(type(y))
+print(type(z))
+print(x + y)
+
+# 4번 출력값 힌트
+# 1. 27
+# 2. 225
+# 3. 45
+# 4. error
+# 4번문제는 보기의 넷중 하나로 제출하세요!!
+`}</pre>
           </div>
 
           <div className="mt-6">
@@ -114,11 +123,10 @@ print(x ** y)`}</pre>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div className="space-y-4">
               {[
-                "print(z)의 출력값",
-                "print(x * y)의 출력값",
-                "print(x // y)의 출력값",
-                "print(x % y)의 출력값",
-                "print(x ** y)의 출력값",
+                "print(type(x))의 출력값",
+                "print(type(y))의 출력값",
+                "print(type(z))의 출력값",
+                "print(x + y)의 출력값",
               ].map((label, index) => (
                 <div key={index} className="grid gap-2">
                   <Label htmlFor={`answer-${index}`}>{label}</Label>
@@ -147,7 +155,7 @@ print(x ** y)`}</pre>
               </h3>
               {!isCorrect && (
                 <div className="mt-2">
-                  <p className="text-sm text-gray-600">힌트: 파이썬의 기본 산술 연산자를 생각해보세요.</p>
+                  <p className="text-sm text-gray-600">힌트: 정수랑 문자열을 더할수 있나요?</p>
                 </div>
               )}
             </div>

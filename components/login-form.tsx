@@ -51,8 +51,7 @@ export default function LoginForm() {
         alert(`로그인 실패: ${result.error || "알 수 없는 오류"}`);
         console.error("로그인 실패", result);
       } else {
-        alert("로그인 성공!");
-        router.push("/dashboard");
+        window.location.href = "/dashboard";
       }
     } catch (error) {
       alert("서버 통신 에러: 네트워크 문제 또는 서버 오류");

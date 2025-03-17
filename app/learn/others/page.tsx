@@ -1,7 +1,9 @@
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { getUserFromCookie } from "@/lib/getUserFromCookie";
 
-export default function OthersPage() {
+export default async function OthersPage() {
+  const user = await getUserFromCookie();
   return (
     <div className="container mx-auto py-10 space-y-8">
       <div className="space-y-4">
