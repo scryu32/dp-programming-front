@@ -19,8 +19,8 @@ export async function POST(request: NextRequest) {
 
     if (user) {
       // 문제별 점수 설정
-      const fivePointProblems = ["variable-1", "variable-2"];
-      const tenPointProblems = ["algorithm-1", "algorithm-2"];
+      const fivePointProblems = ["variable-1", "variable-2", "if-else-1"];
+      const tenPointProblems = ["if-else-2", "if-else-3"];
 
       let points = 0;
       if (fivePointProblems.includes(problemName)) {
@@ -38,6 +38,20 @@ export async function POST(request: NextRequest) {
         }
       } else if (problemName == "variable-2") {
         if ( JSON.stringify(answers) !== JSON.stringify(["int", "str", "float", "error"]) ) {
+          return NextResponse.json(
+            { success: false, message: "넌 이문제 풀 단계가 아니다.." },
+            { status: 500 }
+          ); 
+        }
+      } else if (problemName == "if-else-1") {
+        if ( JSON.stringify(answers) !== JSON.stringify(["B"]) ) {
+          return NextResponse.json(
+            { success: false, message: "넌 이문제 풀 단계가 아니다.." },
+            { status: 500 }
+          ); 
+        }
+      } else if (problemName == "if-else-2") {
+        if ( JSON.stringify(answers) !== JSON.stringify(["짝수 음수", "홀수 음수", "짝수 양수", "홀수 양수", "짝수"]) ) {
           return NextResponse.json(
             { success: false, message: "넌 이문제 풀 단계가 아니다.." },
             { status: 500 }

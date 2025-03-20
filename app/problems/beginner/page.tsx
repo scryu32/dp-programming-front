@@ -27,10 +27,24 @@ export default function BeginnerProblemsPage() {
         },
         {
           id: 3,
-          title: "연산자 활용하기",
-          description: "다양한 연산자를 사용하여 변수를 조작하는 방법을 배웁니다.",
+          title: "문자 입출력",
+          description: "문자 입출력을 이해할수 있는지 확인합니다.",
+          difficulty: "Easy",
+          link: "https://codeup.kr/problem.php?id=6009",
+        },
+        {
+          id: 4,
+          title: "문자 입출력 2",
+          description: "문자 입출력을 응용할수 있는지 확인합니다.",
           difficulty: "Medium",
-          link: "https://example.com/problems/operators",
+          link: "https://codeup.kr/problem.php?id=6019",
+        },
+        {
+          id: 5,
+          title: "입출력 덧셈",
+          description: "자료형과 입출력을 이해했는지 확인합니다.",
+          difficulty: "Easy",
+          link: "https://codeup.kr/problem.php?id=6025",
         },
       ],
     },
@@ -40,25 +54,25 @@ export default function BeginnerProblemsPage() {
       description: "조건에 따라 다른 코드를 실행하는 조건문의 기본 개념을 학습합니다.",
       problems: [
         {
-          id: 4,
+          id: 7,
           title: "기본 if-else 구문",
           description: "기본적인 if-else 구문을 사용하여 조건에 따라 다른 코드를 실행합니다.",
           difficulty: "Easy",
-          link: "https://example.com/problems/basic-if-else",
+          link: "/problems/beginner/if-else-1",
         },
         {
-          id: 5,
-          title: "다중 조건문",
-          description: "여러 조건을 처리하는 if-else if-else 구문을 학습합니다.",
+          id: 8,
+          title: "조건문 응용",
+          description: "if-else문을 응용하여 복잡한 알고리즘을 이해합니다.",
           difficulty: "Medium",
-          link: "https://example.com/problems/multiple-conditions",
+          link: "/problems/beginner/if-else-2",
         },
         {
-          id: 6,
-          title: "삼항 연산자",
-          description: "조건부 삼항 연산자를 사용하여 간결한 조건문을 작성합니다.",
+          id: 9,
+          title: "조건문 응용 2",
+          description: "실생활에 if-else문을 적용시킵니다.",
           difficulty: "Medium",
-          link: "https://example.com/problems/ternary-operator",
+          link: "/problems/beginner/if-else-3",
         },
       ],
     },
@@ -68,35 +82,35 @@ export default function BeginnerProblemsPage() {
       description: "코드를 반복적으로 실행하는 반복문의 다양한 형태를 학습합니다.",
       problems: [
         {
-          id: 7,
+          id: 10,
           title: "기본 for 반복문",
           description: "기본적인 for 반복문을 사용하여 코드를 반복 실행합니다.",
           difficulty: "Easy",
           link: "https://example.com/problems/basic-for-loop",
         },
         {
-          id: 8,
+          id: 11,
           title: "while 반복문",
           description: "while 반복문을 사용하여 조건이 참인 동안 코드를 반복합니다.",
           difficulty: "Easy",
           link: "https://example.com/problems/while-loop",
         },
         {
-          id: 9,
+          id: 12,
           title: "중첩 반복문",
           description: "반복문 안에 반복문을 사용하는 중첩 반복문을 학습합니다.",
           difficulty: "Medium",
           link: "https://example.com/problems/nested-loops",
         },
         {
-          id: 10,
+          id: 13,
           title: "break와 continue",
           description: "반복문을 제어하는 break와 continue 문을 활용합니다.",
           difficulty: "Medium",
           link: "https://example.com/problems/break-continue",
         },
         {
-          id: 11,
+          id: 14,
           title: "무한 루프와 탈출 조건",
           description: "무한 루프를 만들고 적절한 탈출 조건을 설정하는 방법을 배웁니다.",
           difficulty: "Hard",
@@ -110,21 +124,21 @@ export default function BeginnerProblemsPage() {
       description: "여러 데이터를 하나의 변수에 저장하는 배열의 기본 개념과 조작 방법을 학습합니다.",
       problems: [
         {
-          id: 12,
+          id: 15,
           title: "배열 생성과 접근",
           description: "배열을 생성하고 인덱스를 통해 요소에 접근하는 방법을 배웁니다.",
           difficulty: "Easy",
           link: "https://example.com/problems/array-creation",
         },
         {
-          id: 13,
+          id: 16,
           title: "배열 메소드",
           description: "push, pop, shift, unshift 등 기본적인 배열 메소드를 활용합니다.",
           difficulty: "Medium",
           link: "https://example.com/problems/array-methods",
         },
         {
-          id: 14,
+          id: 17,
           title: "배열 순회하기",
           description: "반복문을 사용하여 배열의 모든 요소를 순회하는 방법을 학습합니다.",
           difficulty: "Medium",
@@ -182,6 +196,10 @@ export default function BeginnerProblemsPage() {
     }
   }
 
+  const isCodeUpLink = (link: string) => {
+    return link.toLowerCase().includes("codeup")
+  }
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-8">
@@ -216,7 +234,14 @@ export default function BeginnerProblemsPage() {
                       <CardDescription>{problem.description}</CardDescription>
                     </CardHeader>
                     <CardFooter className="flex justify-between items-center">
-                      <Badge className={`${getDifficultyColor(problem.difficulty)}`}>{problem.difficulty}</Badge>
+                      <div className="flex gap-2">
+                        <Badge className={`${getDifficultyColor(problem.difficulty)}`}>{problem.difficulty}</Badge>
+                        {isCodeUpLink(problem.link) && (
+                          <Badge className="bg-sky-100 text-blue-700 border border-blue-500 hover:bg-sky-200">
+                            CodeUp
+                          </Badge>
+                        )}
+                      </div>
                       <span className="text-sm text-muted-foreground">문제 #{problem.id}</span>
                     </CardFooter>
                   </Card>
