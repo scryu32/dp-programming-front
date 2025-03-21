@@ -37,7 +37,7 @@ export default function ProblemsPage() {
       id: "competitive",
       title: "Competitive Programming",
       description: "심화 알고리즘과 연산을 이용한 초고난도 문제.",
-      count: 10,
+      count: 7,
       href: "/problems/competitive",
     },
   ]
