@@ -4,12 +4,10 @@ import { useEffect, useState } from "react";
 import { DashboardHeader } from "./components/dashboard-header";
 import { ProfileCard } from "./components/profile-card";
 import { SolvedProblems } from "./components/solved-problems";
-import { JwtPayload } from "jsonwebtoken";
 
 interface DashboardProps {
-    user: string;  // userId만 받아올 수 있도록 타입 수정
+    user: string;
 }
-
 
 async function getUserInformation( userId : string) {
   try {

@@ -74,6 +74,20 @@ export default function BeginnerProblemsPage() {
           difficulty: "Medium",
           link: "/problems/beginner/if-else-3",
         },
+        {
+          id: 10,
+          title: "특별한 공 던지기",
+          description: "if문으로 코드를 작성합니다.",
+          difficulty: "Easy",
+          link: "https://codeup.kr/problem.php?id=1157",
+        },
+        {
+          id: 11,
+          title: "윤년 맞추기",
+          description: "if문으로 코드를 작성합니다.",
+          difficulty: "Medium",
+          link: "https://codeup.kr/problem.php?id=1166",
+        },
       ],
     },
     {
@@ -82,105 +96,42 @@ export default function BeginnerProblemsPage() {
       description: "코드를 반복적으로 실행하는 반복문의 다양한 형태를 학습합니다.",
       problems: [
         {
-          id: 10,
-          title: "기본 for 반복문",
-          description: "기본적인 for 반복문을 사용하여 코드를 반복 실행합니다.",
-          difficulty: "Easy",
-          link: "https://example.com/problems/basic-for-loop",
-        },
-        {
-          id: 11,
-          title: "while 반복문",
-          description: "while 반복문을 사용하여 조건이 참인 동안 코드를 반복합니다.",
-          difficulty: "Easy",
-          link: "https://example.com/problems/while-loop",
-        },
-        {
           id: 12,
-          title: "중첩 반복문",
-          description: "반복문 안에 반복문을 사용하는 중첩 반복문을 학습합니다.",
-          difficulty: "Medium",
-          link: "https://example.com/problems/nested-loops",
+          title: "반복문 기초 1",
+          description: "반복문을 이해했는지 확인합니다.",
+          difficulty: "Easy",
+          link: "/problems/beginner/loops-1",
         },
         {
           id: 13,
-          title: "break와 continue",
-          description: "반복문을 제어하는 break와 continue 문을 활용합니다.",
+          title: "반복문 기초 2",
+          description: "반복문 문법간의 차이를 이해합니다.",
           difficulty: "Medium",
-          link: "https://example.com/problems/break-continue",
+          link: "/problems/beginner/loops-2",
         },
         {
           id: 14,
-          title: "무한 루프와 탈출 조건",
-          description: "무한 루프를 만들고 적절한 탈출 조건을 설정하는 방법을 배웁니다.",
-          difficulty: "Hard",
-          link: "https://example.com/problems/infinite-loops",
+          title: "1 부터 100까지 출력하기",
+          description: "반복문을 이용해 코드를 작성합니다.",
+          difficulty: "Easy",
+          link: "https://codeup.kr/problem.php?id=1251",
         },
-      ],
-    },
-    {
-      id: "arrays",
-      name: "배열 다루기",
-      description: "여러 데이터를 하나의 변수에 저장하는 배열의 기본 개념과 조작 방법을 학습합니다.",
-      problems: [
         {
           id: 15,
-          title: "배열 생성과 접근",
-          description: "배열을 생성하고 인덱스를 통해 요소에 접근하는 방법을 배웁니다.",
+          title: "사각형 만들기",
+          description: "중첩 반복문을 이용해 코드를 작성합니다.",
           difficulty: "Easy",
-          link: "https://example.com/problems/array-creation",
+          link: "https://codeup.kr/problem.php?id=1352",
         },
         {
           id: 16,
-          title: "배열 메소드",
-          description: "push, pop, shift, unshift 등 기본적인 배열 메소드를 활용합니다.",
+          title: "삼각형 만들기",
+          description: "중첩 반복문을 이용해 코드를 작성합니다.",
           difficulty: "Medium",
-          link: "https://example.com/problems/array-methods",
-        },
-        {
-          id: 17,
-          title: "배열 순회하기",
-          description: "반복문을 사용하여 배열의 모든 요소를 순회하는 방법을 학습합니다.",
-          difficulty: "Medium",
-          link: "https://example.com/problems/array-iteration",
+          link: "https://codeup.kr/problem.php?id=1354",
         },
       ],
-    },
-    {
-      id: "functions",
-      name: "함수",
-      description: "코드를 재사용 가능한 블록으로 분리하는 함수의 개념과 활용법을 학습합니다.",
-      problems: [
-        {
-          id: 15,
-          title: "함수 선언과 호출",
-          description: "기본적인 함수를 선언하고 호출하는 방법을 배웁니다.",
-          difficulty: "Easy",
-          link: "https://example.com/problems/function-basics",
-        },
-        {
-          id: 16,
-          title: "매개변수와 반환값",
-          description: "함수에 매개변수를 전달하고 값을 반환받는 방법을 학습합니다.",
-          difficulty: "Medium",
-          link: "https://example.com/problems/parameters-return",
-        },
-        {
-          id: 17,
-          title: "화살표 함수",
-          description: "간결한 화살표 함수 문법을 사용하여 함수를 작성합니다.",
-          difficulty: "Medium",
-          link: "https://example.com/problems/arrow-functions",
-        },
-        {
-          id: 18,
-          title: "콜백 함수",
-          description: "함수를 다른 함수의 인자로 전달하는 콜백 패턴을 학습합니다.",
-          difficulty: "Hard",
-          link: "https://example.com/problems/callback-functions",
-        },
-      ],
-    },
+    }
   ]
 
   const getDifficultyColor = (difficulty: string) => {
@@ -210,7 +161,7 @@ export default function BeginnerProblemsPage() {
       </div>
 
       <Tabs defaultValue="variables" className="w-full">
-        <TabsList className="grid grid-cols-2 md:grid-cols-5 mb-8">
+        <TabsList className="grid grid-cols-2 md:grid-cols-3 mb-8">
           {categories.map((category) => (
             <TabsTrigger key={category.id} value={category.id}>
               {category.name}

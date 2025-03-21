@@ -12,19 +12,19 @@ import { CheckCircle2, AlertCircle } from "lucide-react"
 import { JwtPayload } from "jsonwebtoken";
 
 
-interface IfElseProblem1Props {
+interface LoopsProps {
   cookieData: string | JwtPayload
 }
 
-export default function IfElseProblem1({ cookieData }: IfElseProblem1Props) {
-  const [answers, setAnswers] = useState(["", "", "", "", "", ""])
+export default function Loops1({ cookieData }: LoopsProps) {
+  const [answers, setAnswers] = useState(["", "", ""])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showFeedback, setShowFeedback] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [statusMessage, setStatusMessage] = useState("")
 
-  const correctAnswers = ["13", "65", "else", "150", "else", "and"]
+  const correctAnswers = ["18", "99", "0"]
 
   const handleInputChange = (index: number, value: string) => {
     const newAnswers = [...answers]
@@ -49,7 +49,7 @@ export default function IfElseProblem1({ cookieData }: IfElseProblem1Props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          problemName: "if-else-3",
+          problemName: "loops-3",
           answers: answers,
           cookieData, // 쿠키 데이터를 함께 전송할 수도 있음
         }),
@@ -74,7 +74,7 @@ export default function IfElseProblem1({ cookieData }: IfElseProblem1Props) {
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
           <div className="flex justify-between items-center">
-            <CardTitle className="text-2xl">조건문 활용 #3</CardTitle>
+            <CardTitle className="text-2xl">중첩 반복문</CardTitle>
             <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-200">
               Medium
             </Badge>
@@ -83,36 +83,26 @@ export default function IfElseProblem1({ cookieData }: IfElseProblem1Props) {
         </CardHeader>
         <CardContent>
           <div className="bg-slate-50 p-4 rounded-md font-mono text-sm">
-            <pre>{`age = int(input("나이를 입력하세요: "))
-height = int(input("키를 입력하세요: "))
+            <pre>{`for i in range(10):
+    for j in range(10):
+        print(i+j)
 
-age_jogun = False
-height_jogun = False
-
-if age < [   ]:
-  age_jogun = False
-elif age > [   ]:
-  age_jogun = False
-[   ]:
-  age_jogun = True
-
-if height < [   ]:
-  height_jogun = False
-[   ]:
-  height_jogun = True
-
-if height_jogun == True [   ] age_jogun == True:
-  print("탑승 가능")
-else:
-  print("탑승 불가능")
-
+k = 0
+while True:
+    for i in range(100):
+        if i % 7 == 0:
+            print(i)
+    k += 1
+    print(k)
+    if k == i:
+        break
 `}</pre>
           </div>
 
           <div className="mt-6">
             <h3 className="font-semibold mb-2">문제 설명</h3>
             <p>
-              어떤 롤러코스터는 키 150cm, 나이가 13 이상 65 이하인 사람만 탑승 가능합니다. 이때 빈칸에 들어갈 말로 올바른것은?
+              다음과 같은 코드로 반복문을 실행했을때 나올 정보를 적으세요.
             </p>
           </div>
 
@@ -129,12 +119,9 @@ else:
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div className="space-y-4">
               {[
-                "첫번째 빈칸에 들어갈 단어로 알맞은것은?",
-                "두번째 빈칸에 들어갈 단어로 알맞은것은?",
-                "세번째 빈칸에 들어갈 단어로 알맞은것은?",
-                "네번째 빈칸에 들어갈 단어로 알맞은것은?",
-                "다섯번째 빈칸에 들어갈 단어로 알맞은것은?",
-                "여섯번째 빈칸에 들어갈 단어로 알맞은것은?",
+                "print(i+j)의 출력값중 가장 큰 값은?",
+                "코드가 종료될때 k값은?",
+                "print(i)의 출력값중 가장 작은 값은?",
               ].map((label, index) => (
                 <div key={index} className="grid gap-2">
                   <Label htmlFor={`answer-${index}`}>{label}</Label>
@@ -163,7 +150,7 @@ else:
               </h3>
               {!isCorrect && (
                 <div className="mt-2">
-                  <p className="text-sm text-gray-600">힌트: if문과 else문이 언제 어떻게 작동하는지 다시한번 생각해보세요.</p>
+                  <p className="text-sm text-gray-600">힌트: 반복문은 설정하지 않으면 0부터 시작합니다.</p>
                 </div>
               )}
             </div>

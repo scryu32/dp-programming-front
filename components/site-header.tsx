@@ -2,10 +2,11 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import MainNav from "@/components/main-nav"
 import MobileNav from "@/components/mobile-nav"
-import { LogIn, UserPlus } from "lucide-react"
+import { LogIn, UserPlus, ChartLine } from "lucide-react"
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { JwtPayload } from "jsonwebtoken";
+import LogoutButton from "@/components/LogoutButton"; 
 
 export default async function SiteHeader() {
   const cookieStore = await cookies();
@@ -39,11 +40,16 @@ export default async function SiteHeader() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          {/* 로그인 상태에 따라 버튼을 다르게 표시 */}
           {user ? (
-            <Link href="/dashboard">
-              <Button size="sm">Dashboard</Button>
-            </Link>
+            <div className="hidden md:flex gap-2">
+              <Link href="/dashboard">
+                <Button size="sm">
+                  <ChartLine className="h-4 w-4" />
+                  Dashboard
+                </Button>
+              </Link>
+              <LogoutButton />
+            </div>
           ) : (
             <div className="hidden md:flex gap-2">
               <Link href="/login">

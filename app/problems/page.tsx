@@ -16,14 +16,14 @@ export default function ProblemsPage() {
       id: "beginner",
       title: "Beginner Problems",
       description: "문법 연습을 위한 기초문제",
-      count: 15,
+      count: 16,
       href: "/problems/beginner",
     },
     {
       id: "intermediate",
       title: "Intermediate Problems",
       description: "배운 내용을 토대로 문법을 응용하는 중난도 문제",
-      count: 12,
+      count: 9,
       href: "/problems/intermediate",
     },
     {

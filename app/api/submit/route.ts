@@ -19,14 +19,14 @@ export async function POST(request: NextRequest) {
 
     if (user) {
       // 문제별 점수 설정
-      const fivePointProblems = ["variable-1", "variable-2", "if-else-1"];
-      const tenPointProblems = ["if-else-2", "if-else-3"];
+      const fivePointProblems = ["variable-1", "variable-2", "if-else-1", "loops-1"];
+      const tenPointProblems = ["if-else-2", "if-else-3", "loops-2", "loops-3"];
 
       let points = 0;
       if (fivePointProblems.includes(problemName)) {
         points = 5;
       } else if (tenPointProblems.includes(problemName)) {
-        points = 10;
+        points = 20;
       }
 
       if (problemName == "variable-1") {
@@ -52,6 +52,34 @@ export async function POST(request: NextRequest) {
         }
       } else if (problemName == "if-else-2") {
         if ( JSON.stringify(answers) !== JSON.stringify(["짝수 음수", "홀수 음수", "짝수 양수", "홀수 양수", "짝수"]) ) {
+          return NextResponse.json(
+            { success: false, message: "넌 이문제 풀 단계가 아니다.." },
+            { status: 500 }
+          ); 
+        }
+      } else if (problemName == "if-else-3") {
+        if ( JSON.stringify(answers) !== JSON.stringify(["13", "65", "else", "150", "else", "and"]) ) {
+          return NextResponse.json(
+            { success: false, message: "넌 이문제 풀 단계가 아니다.." },
+            { status: 500 }
+          ); 
+        }
+      } else if (problemName == "loops-1") {
+        if ( JSON.stringify(answers) !== JSON.stringify(["9", "45", "9"]) ) {
+          return NextResponse.json(
+            { success: false, message: "넌 이문제 풀 단계가 아니다.." },
+            { status: 500 }
+          ); 
+        }
+      } else if (problemName == "loops-2") {
+        if ( JSON.stringify(answers) !== JSON.stringify(["9", "8", "10"]) ) {
+          return NextResponse.json(
+            { success: false, message: "넌 이문제 풀 단계가 아니다.." },
+            { status: 500 }
+          ); 
+        }
+      } else if (problemName == "loops-2") {
+        if ( JSON.stringify(answers) !== JSON.stringify(["18", "99", "0"]) ) {
           return NextResponse.json(
             { success: false, message: "넌 이문제 풀 단계가 아니다.." },
             { status: 500 }

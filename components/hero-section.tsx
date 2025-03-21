@@ -44,11 +44,15 @@ export default async function HeroSection() {
               <Button size="lg">Register</Button>
             </Link>)}
             
+            {user?(
             <Link href="/learn">
               <Button size="lg" variant="outline">
                 Start Learning
               </Button>
-            </Link>
+            </Link>):(
+            <Link href="/login">
+              <Button size="lg" variant="outline">Login</Button>
+            </Link>)}
           </div>
         </div>
       </div>

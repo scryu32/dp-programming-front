@@ -16,49 +16,21 @@ export default function CompetitiveProblemsPage() {
           title: "최단 경로 알고리즘",
           description: "다익스트라, 벨만-포드, 플로이드-워셜 알고리즘을 구현하고 비교합니다.",
           difficulty: "Expert",
-          link: "https://example.com/problems/shortest-path",
+          link: "https://www.youtube.com/watch?v=8ZP5eqm4JqM",
         },
         {
           id: 2,
           title: "최소 신장 트리",
           description: "크루스칼과 프림 알고리즘을 이용한 최소 신장 트리 구현 방법을 배웁니다.",
           difficulty: "Expert",
-          link: "https://example.com/problems/minimum-spanning-tree",
+          link: "https://www.youtube.com/watch?v=8ZP5eqm4JqM",
         },
         {
           id: 3,
           title: "네트워크 플로우",
           description: "포드-풀커슨, 에드몬드-카프 알고리즘을 이용한 최대 유량 문제를 해결합니다.",
           difficulty: "Expert+",
-          link: "https://example.com/problems/network-flow",
-        },
-      ],
-    },
-    {
-      id: "mathematical-algorithms",
-      name: "수학적 알고리즘",
-      description: "수학적 개념을 활용한 고급 알고리즘을 학습합니다.",
-      problems: [
-        {
-          id: 4,
-          title: "정수론 알고리즘",
-          description: "소수 판별, 최대공약수, 모듈러 연산 등 정수론 알고리즘을 구현합니다.",
-          difficulty: "Expert",
-          link: "https://example.com/problems/number-theory",
-        },
-        {
-          id: 5,
-          title: "조합론 문제",
-          description: "순열, 조합, 카탈란 수 등 조합론적 문제를 해결하는 알고리즘을 배웁니다.",
-          difficulty: "Expert",
-          link: "https://example.com/problems/combinatorics",
-        },
-        {
-          id: 6,
-          title: "기하 알고리즘",
-          description: "컨벡스 헐, 선분 교차 판정 등 계산 기하학 알고리즘을 구현합니다.",
-          difficulty: "Expert+",
-          link: "https://example.com/problems/computational-geometry",
+          link: "https://www.youtube.com/watch?v=8ZP5eqm4JqM",
         },
       ],
     },
@@ -68,32 +40,32 @@ export default function CompetitiveProblemsPage() {
       description: "경쟁 프로그래밍에서 자주 사용되는 고급 알고리즘 기법을 학습합니다.",
       problems: [
         {
-          id: 7,
+          id: 4,
           title: "세그먼트 트리",
           description: "구간 쿼리를 효율적으로 처리하는 세그먼트 트리를 구현합니다.",
           difficulty: "Expert",
-          link: "https://example.com/problems/segment-tree",
+          link: "https://www.youtube.com/watch?v=8ZP5eqm4JqM",
         },
         {
-          id: 8,
+          id: 5,
           title: "트라이 자료구조",
           description: "문자열 검색을 위한 트라이 자료구조를 구현하고 활용합니다.",
           difficulty: "Expert",
-          link: "https://example.com/problems/trie",
+          link: "https://www.youtube.com/watch?v=8ZP5eqm4JqM",
         },
         {
-          id: 9,
+          id: 6,
           title: "분할 정복 최적화",
           description: "분할 정복 알고리즘의 최적화 기법과 응용 방법을 학습합니다.",
           difficulty: "Expert",
-          link: "https://example.com/problems/divide-conquer-optimization",
+          link: "https://www.youtube.com/watch?v=8ZP5eqm4JqM",
         },
         {
-          id: 10,
+          id: 7,
           title: "동적 계획법 최적화",
           description: "Knuth 최적화, 컨벡스 헐 트릭 등 고급 DP 최적화 기법을 배웁니다.",
           difficulty: "Expert+",
-          link: "https://example.com/problems/dp-optimization",
+          link: "https://www.youtube.com/watch?v=8ZP5eqm4JqM",
         },
       ],
     },
@@ -124,7 +96,7 @@ export default function CompetitiveProblemsPage() {
       </div>
 
       <Tabs defaultValue="graph-algorithms" className="w-full">
-        <TabsList className="grid grid-cols-3 mb-8">
+        <TabsList className="grid grid-cols-2 mb-8">
           {categories.map((category) => (
             <TabsTrigger key={category.id} value={category.id}>
               {category.name}

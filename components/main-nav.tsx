@@ -28,10 +28,10 @@ export default function MainNav() {
       active: pathname === "/problems" || pathname.startsWith("/problems/"),
     },
     {
-      href: "/competitions",
-      label: "Competitions",
+      href: "/ranking",
+      label: "Ranking",
       icon: <Trophy className="h-4 w-4 mr-2" />,
-      active: pathname === "/competitions",
+      active: pathname === "/ranking",
     },
   ]
 
