@@ -23,7 +23,7 @@ export default async function LearnPage() {
     {
       id: "others",
       title: "Others",
-      description: "다른 프로그래밍 언어들은 언제 배워야 하는가?",
+      description: "다른 프로그래밍 언어들은 언제 배워야 할까?",
       icon: "⚙️",
       href: "/learn/others",
     }
@@ -34,7 +34,7 @@ export default async function LearnPage() {
       <div className="flex flex-col items-center text-center mb-10">
         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Learn Programming</h1>
         <p className="mt-4 text-muted-foreground md:text-xl max-w-[700px]">
-          프로그래밍 언어의 설명서. 모두가 접근할수있는 쉬운 코딩
+          프로그래밍 언어의 기본 문법과 개념을 익히세요.
         </p>
       </div>
 

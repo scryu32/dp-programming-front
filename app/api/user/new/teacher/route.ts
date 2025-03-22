@@ -4,7 +4,7 @@ import { hashPassword } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, userId, email, grade, studentId, password } = await req.json();
+    const { name, userId, email, password, code } = await req.json();
     
     if (!userId || !password) {
       return NextResponse.json({ error: "아이디와 비밀번호는 필수입니다." }, { status: 400 });
@@ -19,6 +19,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "이미 존재하는 아이디입니다." }, { status: 400 });
     }
 
+    if (code != "Ryusungchan1234") {
+      return NextResponse.json({ error: "보안 코드가 틀렸습니다." }, { status: 400 });
+    }
+
     // 비밀번호 해싱
     const hashedPassword = await hashPassword(password);
 
@@ -27,11 +31,9 @@ export async function POST(req: NextRequest) {
       name,
       userId,
       email,
-      grade,
-      studentId,
       password: hashedPassword,
       createdAt: new Date(),
-      role: "student"
+      role: "teacher"
     });
 
     // ranking 컬렉션에 초기 데이터 생성

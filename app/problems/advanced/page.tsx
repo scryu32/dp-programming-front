@@ -100,6 +100,14 @@ export default function AdvancedProblemsPage() {
     }
   }
 
+  const isCodeUpLink = (link: string) => {
+    return link.toLowerCase().includes("codeup")
+  }
+
+  const isJunOl = (title: string) => {
+    return title.toLowerCase().includes("[정올]")
+  }
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-8">
@@ -134,7 +142,19 @@ export default function AdvancedProblemsPage() {
                       <CardDescription>{problem.description}</CardDescription>
                     </CardHeader>
                     <CardFooter className="flex justify-between items-center">
-                      <Badge className={`${getDifficultyColor(problem.difficulty)}`}>{problem.difficulty}</Badge>
+                      <div className="flex gap-2">
+                        <Badge className={`${getDifficultyColor(problem.difficulty)}`}>{problem.difficulty}</Badge>
+                        {isCodeUpLink(problem.link) && (
+                          <Badge className="bg-sky-100 text-blue-700 border border-blue-500 hover:bg-sky-200">
+                            CodeUp
+                          </Badge>
+                        )}
+                        {isJunOl(problem.title) && (
+                          <Badge className="bg-yellow-300 text-yellow-800 border border-yellow-500 hover:bg-yellow-400">
+                            정올
+                          </Badge>
+                        )}
+                      </div>
                       <span className="text-sm text-muted-foreground">문제 #{problem.id}</span>
                     </CardFooter>
                   </Card>

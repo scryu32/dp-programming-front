@@ -203,7 +203,7 @@ export default async function AlgorithmPage() {
                   <li>
                     <strong>O(1)</strong> - 상수 공간: 입력 크기와 관계없이 고정된 양의 메모리 사용
                     <div className="bg-muted p-2 rounded-md mt-1">
-                      <code className="text-xs">
+                      <pre className="text-xs">
                         {`def sum_array(arr):
     total = 0  # 상수 공간 사용
     for num in arr:
@@ -213,13 +213,13 @@ export default async function AlgorithmPage() {
 # 예시
 print(sum_array([1, 2, 3, 4, 5]))  # 출력: 15
 `}
-                      </code>
+                      </pre>
                     </div>
                   </li>
                   <li>
                     <strong>O(n)</strong> - 선형 공간: 입력 크기에 비례하는 메모리 사용
                     <div className="bg-muted p-2 rounded-md mt-1">
-                      <code className="text-xs">
+                      <pre className="text-xs">
                         {`def copy_array(arr):
     copy = []  # 입력 크기에 비례하는 공간 사용
     for item in arr:
@@ -229,21 +229,21 @@ print(sum_array([1, 2, 3, 4, 5]))  # 출력: 15
 # 예시
 print(copy_array([1, 2, 3, 4, 5]))  # 출력: [1, 2, 3, 4, 5]
 `}
-                      </code>
+                      </pre>
                     </div>
                   </li>
                   <li>
                     <strong>O(n²)</strong> - 이차 공간: 입력 크기의 제곱에 비례하는 메모리 사용
                     <div className="bg-muted p-2 rounded-md mt-1">
-                      <code className="text-xs">
+                      <pre className="text-xs">
                         {`def create_matrix(n):
-    matrix = []  # n x n 크기의 행렬 생성
-    for i in range(n):
-        row = []
-        for j in range(n):
-            row.append(i * j)
-        matrix.append(row)
-    return matrix
+matrix = []  # n x n 크기의 행렬 생성
+for i in range(n):
+    row = []
+    for j in range(n):
+        row.append(i * j)
+    matrix.append(row)
+return matrix
 
 # 예시
 matrix = create_matrix(3)
@@ -254,7 +254,7 @@ for row in matrix:
 # [0, 1, 2]
 # [0, 2, 4]
 `}
-                      </code>
+                      </pre>
                     </div>
                   </li>
                 </ul>
@@ -298,7 +298,6 @@ for row in matrix:
                   순차 구조는 가장 기본적인 제어 구조로, 명령어가 위에서 아래로 순서대로 실행됩니다.
                 </p>
                 <div className="bg-muted p-4 rounded-md">
-                  <h4 className="font-medium mb-2">JavaScript 예시:</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`# 순차 구조 예시
 x = 5           # 첫 번째 명령
@@ -323,7 +322,7 @@ print(sum)    # 네 번째 명령`}
                   사용합니다.
                 </p>
                 <div className="bg-muted p-4 rounded-md mb-4">
-                  <h4 className="font-medium mb-2">if-else 문 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">if-else 문</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`// if-else 문 예시
 score = 85
@@ -360,7 +359,7 @@ print(f"점수: {score}, 학점: {grade}");  # 출력: 점수: 85, 학점: B`}
                   문을 사용합니다.
                 </p>
                 <div className="bg-muted p-4 rounded-md mb-4">
-                  <h4 className="font-medium mb-2">for 문 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">for 문</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`# for 문 예시
 sum = 0
@@ -372,7 +371,7 @@ print(f"1부터 10까지의 합: {sum}");  # 출력: 1부터 10까지의 합: 55
                   </pre>
                 </div>
                 <div className="bg-muted p-4 rounded-md mb-4">
-                  <h4 className="font-medium mb-2">while 문 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">while 문</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`# while 문 예시
 count = 0
@@ -413,7 +412,7 @@ print(f"5! = {factorial}");  # 출력: 5! = 120`}
                   </ul>
                 </div>
                 <div className="bg-muted p-4 rounded-md mb-4">
-                  <h4 className="font-medium mb-2">팩토리얼 계산 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">팩토리얼 계산</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`def factorial(n):
     # 기저 조건: n이 0 또는 1이면 1을 반환
@@ -427,7 +426,7 @@ print(factorial(5))  # 출력: 120
                   </pre>
                 </div>
                 <div className="bg-muted p-4 rounded-md">
-                  <h4 className="font-medium mb-2">피보나치 수열 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">피보나치 수열</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`def fibonacci(n):
     # 기저 조건: n이 0 또는 1이면 n을 반환
@@ -497,7 +496,7 @@ print(fibonacci(6))  # 출력: 8
                     </ul>
                   </div>
                   <div className="bg-muted p-4 rounded-md mb-4">
-                    <h4 className="font-medium mb-2">병합 정렬 예시 (JavaScript):</h4>
+                    <h4 className="font-medium mb-2">병합 정렬 예시</h4>
                     <pre className="text-sm overflow-x-auto">
                       {`def merge_sort(arr):
     # 기저 조건: 배열의 길이가 1 이하이면 이미 정렬된 상태로 간주
@@ -537,7 +536,7 @@ print(merge_sort(arr))  # 출력: [1, 2, 3, 4, 5, 6]
                     </pre>
                   </div>
                   <div className="bg-muted p-4 rounded-md">
-                    <h4 className="font-medium mb-2">이진 검색 예시 (JavaScript):</h4>
+                    <h4 className="font-medium mb-2">이진 검색 예시</h4>
                     <pre className="text-sm overflow-x-auto">
                       {`def binary_search(arr, target):
     left = 0
@@ -615,7 +614,7 @@ print(binary_search(sorted_arr, 10))  # 출력: -1
                     </ul>
                   </div>
                   <div className="bg-muted p-4 rounded-md mb-4">
-                    <h4 className="font-medium mb-2">피보나치 수열 예시 (JavaScript):</h4>
+                    <h4 className="font-medium mb-2">피보나치 수열 예시</h4>
                     <pre className="text-sm overflow-x-auto">
                       {`// 하향식 접근법 (메모이제이션)
 def fibonacci_top_down(n, memo=None):
@@ -648,7 +647,7 @@ print(fibonacci_bottom_up(10))  # 출력: 55
                     </pre>
                   </div>
                   <div className="bg-muted p-4 rounded-md">
-                    <h4 className="font-medium mb-2">최장 증가 부분 수열(LIS) 예시 (JavaScript):</h4>
+                    <h4 className="font-medium mb-2">최장 증가 부분 수열(LIS) 예시</h4>
                     <pre className="text-sm overflow-x-auto">
                       {`def longest_increasing_subsequence(arr):
     n = len(arr)
@@ -718,7 +717,7 @@ print(longest_increasing_subsequence(arr))  # 출력: 5 (예: 10, 22, 33, 50, 60
                     </ul>
                   </div>
                   <div className="bg-muted p-4 rounded-md">
-                    <h4 className="font-medium mb-2">동전 거스름돈 문제 (JavaScript):</h4>
+                    <h4 className="font-medium mb-2">동전 거스름돈 문제</h4>
                     <pre className="text-sm overflow-x-auto">
                       {`def coin_change(coins, amount):
     # 내림차순으로 동전 정렬
@@ -791,7 +790,7 @@ print(coin_change(coins, amount))  # 출력: 6 (500원 2개, 100원 2개, 50원 
                     </ul>
                   </div>
                   <div className="bg-muted p-4 rounded-md">
-                    <h4 className="font-medium mb-2">N-Queens 문제 (JavaScript):</h4>
+                    <h4 className="font-medium mb-2">N-Queens 문제</h4>
                     <pre className="text-sm overflow-x-auto">
                       {`def solve_n_queens(n):
     result = []
@@ -890,7 +889,7 @@ if __name__ == "__main__":
                     </ul>
                   </div>
                   <div className="bg-muted p-4 rounded-md">
-                    <h4 className="font-medium mb-2">0/1 배낭 문제 (JavaScript):</h4>
+                    <h4 className="font-medium mb-2">0/1 배낭 문제</h4>
                     <pre className="text-sm overflow-x-auto">
                       {`class Item:
     def __init__(self, weight, value):
@@ -1033,7 +1032,7 @@ if __name__ == "__main__":
                   </ul>
                 </div>
                 <div className="bg-muted p-4 rounded-md">
-                  <h4 className="font-medium mb-2">선형 검색 구현 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">선형 검색 구현</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`def linear_search(arr, target):
     for i, value in enumerate(arr):
@@ -1071,7 +1070,7 @@ print(linear_search(arr, 7))  # 출력: -1
                   </ul>
                 </div>
                 <div className="bg-muted p-4 rounded-md mb-4">
-                  <h4 className="font-medium mb-2">반복적 이진 검색 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">반복적 이진 검색</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`def binary_search(arr, target):
     left = 0
@@ -1096,7 +1095,7 @@ print(binary_search(arr, 10))  # 출력: -1
                   </pre>
                 </div>
                 <div className="bg-muted p-4 rounded-md">
-                  <h4 className="font-medium mb-2">재귀적 이진 검색 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">재귀적 이진 검색</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`def binary_search_recursive(arr, target, left=0, right=None):
     if right is None:
@@ -1151,7 +1150,7 @@ print(binary_search_recursive(arr, 7))  # 출력: 6
                   </ul>
                 </div>
                 <div className="bg-muted p-4 rounded-md">
-                  <h4 className="font-medium mb-2">해시 테이블 구현 (JavaScript):</h4>
+                  <h4 className="font-medium mb-2">해시 테이블 구현</h4>
                   <pre className="text-sm overflow-x-auto">
                     {`class HashTable:
     def __init__(self, size=53):

@@ -23,25 +23,20 @@ const formSchema = z
     email: z.string().email({
       message: "Please enter a valid email address.",
     }),
-    grade: z.string({
-      required_error: "Please select your grade.",
-    }),
-    studentId: z.string().min(1, {
-      message: "Student ID is required.",
-    }),
     password: z.string().min(8, {
       message: "Password must be at least 8 characters.",
     }),
     confirmPassword: z.string().min(8, {
       message: "Password must be at least 8 characters.",
     }),
+    code: z.string().optional(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
     path: ["confirmPassword"],
   })
 
-export default function RegisterForm() {
+export default function RegisterFormTeacher() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
@@ -52,8 +47,7 @@ export default function RegisterForm() {
       name: "",
       userId: "",
       email: "",
-      grade: "",
-      studentId: "",
+      code: "",
       password: "",
       confirmPassword: "",
     },
@@ -63,7 +57,7 @@ export default function RegisterForm() {
     setIsLoading(true);
   
     try {
-      const response = await fetch("/api/user/new", {
+      const response = await fetch("/api/user/new/teacher", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +69,7 @@ export default function RegisterForm() {
 
       if (!response.ok) {
         alert(`회원가입 실패: ${result.error || "알 수 없는 오류"}`);
-        router.push("/register");
+        router.push("/register/teacher");
       } else {
         alert("회원가입 성공! 로그인 페이지로 이동합니다.");
         router.push("/login");
@@ -129,42 +123,6 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
-        <div className="grid grid-cols-2 gap-4">
-          <FormField
-            control={form.control}
-            name="grade"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Grade</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select grade" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="1">1st Grade</SelectItem>
-                    <SelectItem value="2">2nd Grade</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="studentId"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Student ID</FormLabel>
-                <FormControl>
-                  <Input placeholder="10101" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
         <FormField
           control={form.control}
           name="password"
@@ -186,6 +144,19 @@ export default function RegisterForm() {
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
                 <Input type="password" placeholder="••••••••" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="code"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Code</FormLabel>
+              <FormControl>
+                <Input placeholder="가입 코드를 입력해주세요." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

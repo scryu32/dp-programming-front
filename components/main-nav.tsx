@@ -28,6 +28,12 @@ export default function MainNav() {
       active: pathname === "/problems" || pathname.startsWith("/problems/"),
     },
     {
+      href: "/ai",
+      label: "AI Concepts",
+      icon: <Brain className="h-4 w-4 mr-2" />,
+      active: pathname === "/ai" || pathname.startsWith("/ai/"),
+    },
+    {
       href: "/ranking",
       label: "Ranking",
       icon: <Trophy className="h-4 w-4 mr-2" />,
