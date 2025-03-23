@@ -8,8 +8,6 @@ interface Answer {
   id: number
   author: string
   content: string
-  date: string
-  likes: number
 }
 
 interface Question {
@@ -17,8 +15,6 @@ interface Question {
   title: string
   author: string
   content: string
-  date: string
-  status: "pending" | "answered"
   answers: Answer[]
 }
 
@@ -47,8 +43,6 @@ export default function QuestionDetailClient({ id, initialQuestion }: QuestionDe
       title={question.title}
       author={question.author}
       content={question.content}
-      date={question.date}
-      status={question.status}
       answers={question.answers}
       onBack={handleBack}
     />

@@ -1,20 +1,29 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
+import { JwtPayload } from "jsonwebtoken";
 
-export function QuestionForm() {
+interface IfElseProblem1Props {
+  cookieData: string | JwtPayload
+}
+export function QuestionForm({ cookieData }: IfElseProblem1Props) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
-    name: "",
     title: "",
     content: "",
   })
@@ -28,19 +37,36 @@ export function QuestionForm() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // 여기에 실제 데이터 저장 로직이 들어갈 수 있습니다
-    // 예: API 호출 또는 서버 액션 사용
+    try {
+      const res = await fetch("/api/question", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, cookieData }),
+      })
 
-    // 제출 시뮬레이션
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    toast({
-      title: "질문이 등록되었습니다",
-      description: "답변이 등록되면 알려드리겠습니다.",
-    })
-
-    setFormData({ name: "", title: "", content: "" })
-    setIsSubmitting(false)
+      if (res.ok) {
+        toast({
+          title: "질문이 등록되었습니다",
+          description: "답변이 등록되면 알려드리겠습니다.",
+        })
+        setFormData({ title: "", content: "" })
+      } else {
+        toast({
+          title: "오류 발생",
+          description: "질문 등록에 실패했습니다.",
+        })
+      }
+    } catch (error) {
+      console.error(error)
+      toast({
+        title: "오류 발생",
+        description: "네트워크 오류가 발생했습니다.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -51,17 +77,6 @@ export function QuestionForm() {
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">이름</Label>
-            <Input
-              id="name"
-              name="name"
-              placeholder="이름을 입력하세요"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
           <div className="space-y-2">
             <Label htmlFor="title">제목</Label>
             <Input
@@ -95,4 +110,3 @@ export function QuestionForm() {
     </Card>
   )
 }
-

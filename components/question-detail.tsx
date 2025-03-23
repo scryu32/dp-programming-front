@@ -6,9 +6,8 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
-import { ThumbsUp, MessageCircle, ArrowLeft } from "lucide-react"
+import { MessageCircle, ArrowLeft } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
 
@@ -16,7 +15,6 @@ interface Answer {
   id: number
   author: string
   content: string
-  date: string
 }
 
 interface QuestionDetailProps {
@@ -24,8 +22,6 @@ interface QuestionDetailProps {
   title: string
   author: string
   content: string
-  date: string
-  status: "pending" | "answered"
   answers: Answer[]
   onBack: () => void
 }
@@ -35,8 +31,6 @@ export function QuestionDetail({
   title,
   author,
   content,
-  date,
-  status,
   answers,
   onBack,
 }: QuestionDetailProps) {
@@ -58,7 +52,6 @@ export function QuestionDetail({
       id: Date.now(),
       author: "현재 사용자",
       content: answerText,
-      date: new Date().toISOString().split("T")[0],
     }
 
     setAnswersList([...answersList, newAnswer])
@@ -89,12 +82,8 @@ export function QuestionDetail({
                 </Avatar>
                 <span>{author}</span>
                 <span>•</span>
-                <span>{date}</span>
               </CardDescription>
             </div>
-            <Badge variant={status === "answered" ? "default" : "outline"}>
-              {status === "answered" ? "답변 완료" : "답변 대기중"}
-            </Badge>
           </div>
         </CardHeader>
         <CardContent>
@@ -120,7 +109,6 @@ export function QuestionDetail({
                   </Avatar>
                   <span>{answer.author}</span>
                   <span>•</span>
-                  <span>{answer.date}</span>
                 </CardDescription>
               </CardHeader>
               <CardContent>
