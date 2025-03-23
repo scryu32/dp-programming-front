@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Code, BookOpen, Brain, Trophy, Home } from "lucide-react"
+import { Code, BookOpen, BadgeHelp, Trophy, Home } from "lucide-react"
 
 export default function MainNav() {
   const pathname = usePathname()
@@ -28,10 +28,10 @@ export default function MainNav() {
       active: pathname === "/problems" || pathname.startsWith("/problems/"),
     },
     {
-      href: "/ai",
-      label: "AI Concepts",
-      icon: <Brain className="h-4 w-4 mr-2" />,
-      active: pathname === "/ai" || pathname.startsWith("/ai/"),
+      href: "/questions",
+      label: "Question",
+      icon: <BadgeHelp className="h-4 w-4 mr-2" />,
+      active: pathname === "/questions" || pathname.startsWith("/questions/"),
     },
     {
       href: "/ranking",

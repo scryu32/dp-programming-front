@@ -74,7 +74,7 @@ export default function LoginForm() {
             <FormItem>
               <FormLabel>User ID</FormLabel>
               <FormControl>
-                <Input placeholder="yourUserId" {...field} />
+                <Input placeholder="User ID" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

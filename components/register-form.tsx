@@ -29,6 +29,9 @@ const formSchema = z
     studentId: z.string().min(1, {
       message: "Student ID is required.",
     }),
+    dream: z.string().min(1, {
+      message: "Student ID is required.",
+    }),
     password: z.string().min(8, {
       message: "Password must be at least 8 characters.",
     }),
@@ -54,6 +57,7 @@ export default function RegisterForm() {
       email: "",
       grade: "",
       studentId: "",
+      dream: "",
       password: "",
       confirmPassword: "",
     },
@@ -110,7 +114,7 @@ export default function RegisterForm() {
             <FormItem>
               <FormLabel>User ID</FormLabel>
               <FormControl>
-                <Input placeholder="UserId" {...field} />
+                <Input placeholder="User ID" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -165,6 +169,19 @@ export default function RegisterForm() {
             )}
           />
         </div>
+          <FormField
+            control={form.control}
+            name="dream"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>희망 진로</FormLabel>
+                <FormControl>
+                  <Input placeholder="ex) 프로그래머 등등.." {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         <FormField
           control={form.control}
           name="password"

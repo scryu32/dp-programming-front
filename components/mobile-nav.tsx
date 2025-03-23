@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Home, BookOpen, Code, Brain, Trophy, LogIn, UserPlus } from "lucide-react"
+import { Menu, Home, BookOpen, Code, Trophy, LogIn, UserPlus, BadgeHelp } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 
@@ -32,10 +32,10 @@ export default function MobileNav() {
       active: pathname === "/problems" || pathname.startsWith("/problems/"),
     },
     {
-      href: "/ai",
-      label: "AI Concepts",
-      icon: <Brain className="h-4 w-4 mr-2" />,
-      active: pathname === "/ai" || pathname.startsWith("/ai/"),
+      href: "/questions",
+      label: "Question",
+      icon: <BadgeHelp className="h-4 w-4 mr-2" />,
+      active: pathname === "/questions" || pathname.startsWith("/questions/"),
     },
     {
       href: "/ranking",
