@@ -32,7 +32,7 @@ export default async function HeroSection() {
               Welcome to <span className="text-primary">Ctrl V</span> Programming Club
             </h1>
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl pt-2">
-              대평고등학교 최고의 프로그래밍 동아리, Ctrl V에 오신것을 환영합니다.
+              대평고등학교 프로그래밍 동아리, Ctrl V에 오신것을 환영합니다.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
