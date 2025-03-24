@@ -3,17 +3,20 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { QuestionDetail } from "@/components/question-detail"
+import { JwtPayload } from "jsonwebtoken";
 
 interface Answer {
   id: number
   author: string
   content: string
+  date: string
 }
 
 interface Question {
   id: number
   title: string
   author: string
+  date: string
   content: string
   answers: Answer[]
 }
@@ -21,17 +24,13 @@ interface Question {
 interface QuestionDetailClientProps {
   id: string
   initialQuestion: Question
+  cookieData: string | JwtPayload
 }
 
-export default function QuestionDetailClient({ id, initialQuestion }: QuestionDetailClientProps) {
+
+export default function QuestionDetailClient({ id, initialQuestion, cookieData }: QuestionDetailClientProps) {
   const router = useRouter()
   const [question, setQuestion] = useState(initialQuestion)
-
-  // 필요한 경우 추가 데이터 로딩
-  useEffect(() => {
-    // 예: fetchAdditionalData(id).then(data => updateQuestion(data))
-    console.log(`질문 ID: ${id} 클라이언트 컴포넌트에서 로딩됨`)
-  }, [id])
 
   const handleBack = () => {
     router.push("/questions")
@@ -42,9 +41,11 @@ export default function QuestionDetailClient({ id, initialQuestion }: QuestionDe
       id={question.id}
       title={question.title}
       author={question.author}
+      date={question.date}
       content={question.content}
       answers={question.answers}
       onBack={handleBack}
+      cookieData={cookieData}
     />
   )
 }

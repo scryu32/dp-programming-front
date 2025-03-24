@@ -1379,52 +1379,6 @@ def get_github_user_info(username):
           </Card>
         </TabsContent>
       </Tabs>
-
-      <div className="bg-muted p-6 rounded-lg">
-        <div className="flex items-center gap-2 mb-4">
-          <FileCode className="h-5 w-5 text-primary" />
-          <h2 className="text-xl font-bold">실습 과제</h2>
-        </div>
-        <p className="mb-4">다음 실습 과제를 통해 파일 입출력에 대한 이해를 높여보세요.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">텍스트 파일 처리</CardTitle>
-              <CardDescription>텍스트 파일을 읽고 쓰는 프로그램을 작성해보세요.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                텍스트 파일에서 특정 단어의 빈도수를 계산하고, 결과를 새 파일에 저장하는 프로그램을 작성하세요.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Link href="/problems/python/text-file-processing" className="w-full">
-                <Button variant="outline" size="sm" className="w-full">
-                  문제 풀기
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">데이터 파일 변환</CardTitle>
-              <CardDescription>CSV와 JSON 파일 간 변환 프로그램을 작성해보세요.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                CSV 파일을 읽어 JSON 파일로 변환하고, JSON 파일을 읽어 CSV 파일로 변환하는 프로그램을 작성하세요.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Link href="/problems/python/data-file-conversion" className="w-full">
-                <Button variant="outline" size="sm" className="w-full">
-                  문제 풀기
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-        </div>
-      </div>
     </div>
   )
 }

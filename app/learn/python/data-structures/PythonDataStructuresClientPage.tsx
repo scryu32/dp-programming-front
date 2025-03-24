@@ -757,53 +757,6 @@ print(word_count.most_common(2))  # 출력: [('apple', 3), ('banana', 2)]`}
           </Card>
         </TabsContent>
       </Tabs>
-
-      <div className="bg-muted p-6 rounded-lg">
-        <div className="flex items-center gap-2 mb-4">
-          <FileCode className="h-5 w-5 text-primary" />
-          <h2 className="text-xl font-bold">실습 과제</h2>
-        </div>
-        <p className="mb-4">다음 실습 과제를 통해 데이터 구조에 대한 이해를 높여보세요.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">리스트와 튜플 실습</CardTitle>
-              <CardDescription>리스트와 튜플을 활용한 데이터 처리 문제를 풀어보세요.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                학생들의 성적 데이터를 리스트와 튜플로 관리하고, 평균, 최고점, 최저점을 계산하는 프로그램을 작성하세요.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Link href="/problems/python/list-tuple-practice" className="w-full">
-                <Button variant="outline" size="sm" className="w-full">
-                  문제 풀기
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">딕셔너리 실습</CardTitle>
-              <CardDescription>딕셔너리를 활용한 데이터 관리 문제를 풀어보세요.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                간단한 주소록 관리 프로그램을 딕셔너리를 사용하여 구현해보세요. 연락처 추가, 수정, 삭제, 검색 기능을
-                포함해야 합니다.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Link href="/problems/python/dictionary-practice" className="w-full">
-                <Button variant="outline" size="sm" className="w-full">
-                  문제 풀기
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-        </div>
-      </div>
     </div>
   )
 }

@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { MessageCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 interface QuestionItem {
@@ -14,6 +12,7 @@ interface QuestionItem {
     name: string
     title: string
     content: string
+    date: string // 날짜 필드 추가 (ISO 문자열 등)
   }
 }
 
@@ -34,7 +33,9 @@ export default function QuestionList() {
       .catch((err) => {
         console.error(err)
       })
-      .finally(() => setLoading(false))
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
   if (loading) {
@@ -48,7 +49,7 @@ export default function QuestionList() {
       </div>
 
       {questions.map((item) => {
-        const { qId, name, title, content } = item.question
+        const { qId, name, title, content, date } = item.question
         return (
           <Card key={qId}>
             <CardHeader>
@@ -60,30 +61,19 @@ export default function QuestionList() {
                       <AvatarFallback>{name ? name.charAt(0) : "?"}</AvatarFallback>
                     </Avatar>
                     <span>{name}</span>
-                    <span>•</span>
-                    {/* 날짜가 없는 경우 기본 텍스트 사용 */}
-                    <span>날짜 없음</span>
+                    <span className="inline-flex items-center text-xs text-gray-500 ml-2 before:content-['•'] before:mr-2 before:text-gray-300">
+                      {new Date(date).toLocaleDateString()}
+                    </span>
                   </CardDescription>
                 </div>
-                {/* 상태가 없으므로 기본적으로 답변 대기중 처리 */}
-                <Badge variant="outline">답변 대기중</Badge>
               </div>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600 dark:text-gray-300">{content}</p>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <div className="flex gap-4">
-                <Button variant="ghost" size="sm" className="flex items-center gap-1">
-                  <MessageCircle className="h-4 w-4" />
-                  {/* 답변 수가 없으므로 0 기본값 */}
-                  <span>0</span>
-                </Button>
-              </div>
               <Button variant="outline" size="sm">
-                <Link href={`/questions/${qId}`}>
-                  답변 보기
-                </Link>
+                <Link href={`/questions/${qId}`}>답변 보기</Link>
               </Button>
             </CardFooter>
           </Card>
@@ -92,3 +82,4 @@ export default function QuestionList() {
     </div>
   )
 }
+

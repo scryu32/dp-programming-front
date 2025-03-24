@@ -677,52 +677,6 @@ while True:
           </Card>
         </TabsContent>
       </Tabs>
-
-      <div className="bg-muted p-6 rounded-lg">
-        <div className="flex items-center gap-2 mb-4">
-          <FileCode className="h-5 w-5 text-primary" />
-          <h2 className="text-xl font-bold">실습 과제</h2>
-        </div>
-        <p className="mb-4">다음 실습 과제를 통해 제어문과 반복문에 대한 이해를 높여보세요.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">조건문 실습</CardTitle>
-              <CardDescription>if-else 조건문을 활용한 간단한 프로그램을 작성해보세요.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                사용자의 나이를 입력받아 성인 여부를 판단하고, 성인이면 추가 정보를 요청하는 프로그램을 작성하세요.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Link href="/problems/python/conditional-basic" className="w-full">
-                <Button variant="outline" size="sm" className="w-full">
-                  문제 풀기
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">반복문 실습</CardTitle>
-              <CardDescription>for와 while 반복문을 활용한 문제를 풀어보세요.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                1부터 100까지의 숫자 중 3의 배수와 5의 배수를 모두 출력하는 프로그램을 작성하세요.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Link href="/problems/python/loops-practice" className="w-full">
-                <Button variant="outline" size="sm" className="w-full">
-                  문제 풀기
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-        </div>
-      </div>
     </div>
   )
 }

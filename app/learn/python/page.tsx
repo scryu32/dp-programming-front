@@ -79,7 +79,7 @@ export default function PythonLearningPage() {
       title: "함수",
       description: "함수를 정의하고 사용하는 방법, 매개변수와 반환값에 대해 배웁니다.",
       difficulty: 2,
-      lessons: ["함수 정의하기", "매개변수와 인자", "반환값", "기본 매개변수"],
+      lessons: ["함수 정의하기", "매개변수와 인자", "반환값", "기본 매개변수", "재귀함수"],
       href: "/learn/python/functions",
     },
     {

@@ -1,7 +1,5 @@
 "use client"
-
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,11 +8,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { MessageCircle, ArrowLeft } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
+import { JwtPayload } from "jsonwebtoken";
 
 interface Answer {
   id: number
   author: string
   content: string
+  date: string
 }
 
 interface QuestionDetailProps {
@@ -22,8 +22,10 @@ interface QuestionDetailProps {
   title: string
   author: string
   content: string
+  date: string
   answers: Answer[]
   onBack: () => void
+  cookieData: string | JwtPayload
 }
 
 export function QuestionDetail({
@@ -31,8 +33,10 @@ export function QuestionDetail({
   title,
   author,
   content,
+  date,
   answers,
   onBack,
+  cookieData
 }: QuestionDetailProps) {
   const { toast } = useToast()
   const [answerText, setAnswerText] = useState("")
@@ -44,24 +48,36 @@ export function QuestionDetail({
     if (!answerText.trim()) return
 
     setIsSubmitting(true)
+    try {
+      const res = await fetch("/api/question/comment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ answerText, id, cookieData }),
+      })
 
-    // 제출 시뮬레이션
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    const newAnswer: Answer = {
-      id: Date.now(),
-      author: "현재 사용자",
-      content: answerText,
+      if (res.ok) {
+        toast({
+          title: "답변이 등록되었습니다",
+        })
+        setAnswerText("");
+      } else {
+        toast({
+          title: "오류 발생",
+          description: "답변 등록에 실패했습니다.",
+        })
+      }
+    } catch (error) {
+      console.error(error)
+      toast({
+        title: "오류 발생",
+        description: "네트워크 오류가 발생했습니다.",
+      })
+    } finally {
+      setIsSubmitting(false)
+      window.location.href = `/questions/${id}`;
     }
-
-    setAnswersList([...answersList, newAnswer])
-    setAnswerText("")
-    setIsSubmitting(false)
-
-    toast({
-      title: "답변이 등록되었습니다",
-      description: "질문자에게 알림이 전송됩니다.",
-    })
   }
 
   return (
@@ -82,6 +98,7 @@ export function QuestionDetail({
                 </Avatar>
                 <span>{author}</span>
                 <span>•</span>
+                <span>{new Date(date).toLocaleDateString()}</span>
               </CardDescription>
             </div>
           </div>
@@ -100,8 +117,8 @@ export function QuestionDetail({
         </h3>
 
         {answersList.length > 0 ? (
-          answersList.map((answer) => (
-            <Card key={answer.id}>
+          answersList.map((answer, i) => (
+            <Card key={i}>
               <CardHeader>
                 <CardDescription className="flex items-center gap-2">
                   <Avatar className="h-6 w-6">
@@ -109,6 +126,7 @@ export function QuestionDetail({
                   </Avatar>
                   <span>{answer.author}</span>
                   <span>•</span>
+                  <span>{new Date(answer.date).toLocaleDateString()}</span>
                 </CardDescription>
               </CardHeader>
               <CardContent>

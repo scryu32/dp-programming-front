@@ -11,6 +11,7 @@ export async function getQuestionById(qId: number) {
     id: questionDoc.qId,
     title: questionDoc.title,
     author: questionDoc.name,
+    date: questionDoc.date,
     content: questionDoc.content,
     answers: [],
   };
@@ -28,6 +29,7 @@ export async function getAnswersByQuestionId(qId: number) {
     author: answer.name,
     userId: answer.userId,
     content: answer.content,
+    date: answer.date,
   }));
 }
 

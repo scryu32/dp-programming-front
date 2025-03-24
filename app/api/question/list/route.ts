@@ -19,6 +19,7 @@ export async function GET() {
             name: question.name,
             title: question.title,
             content: question.content,
+            date: question.date,
           }
         };
       })

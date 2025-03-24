@@ -1,18 +1,20 @@
 import QuestionDetailClient from "@/components/question-detail-client"
 import { getQuestionById, getAnswersByQuestionId, getStaticQuestionParams } from "@/lib/questionService"
+import { getUserFromCookie } from "@/lib/getUserFromCookie";
 
 // Match the interface from question-detail-client.tsx
 interface Answer {
   id: number // Changed from string to number
   author: string
   content: string
-  // Note: userId is missing in the client interface
+  date: string
 }
 
 interface Question {
   id: number
   title: string
   author: string
+  date: string
   content: string
   answers: Answer[]
 }
@@ -25,6 +27,7 @@ export default async function QuestionDetailPage({
   const { id } = await params
   const qId = Number.parseInt(id, 10)
   const question = (await getQuestionById(qId)) as Question
+  const user = await getUserFromCookie();
 
   // 답변 데이터 불러오기 (타입 캐스팅)
   const answers = await getAnswersByQuestionId(qId)
@@ -34,6 +37,7 @@ export default async function QuestionDetailPage({
     id: typeof answer.id === "string" ? Number.parseInt(answer.id, 10) : answer.id,
     author: answer.author,
     content: answer.content,
+    date: answer.date,
     // userId is omitted as it's not in the client interface
   }))
 
@@ -42,7 +46,7 @@ export default async function QuestionDetailPage({
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <QuestionDetailClient id={String(qId)} initialQuestion={question} />
+      <QuestionDetailClient id={String(qId)} initialQuestion={question} cookieData={user} />
     </div>
   )
 }

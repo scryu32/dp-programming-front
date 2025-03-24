@@ -49,7 +49,6 @@ export function QuestionForm({ cookieData }: IfElseProblem1Props) {
       if (res.ok) {
         toast({
           title: "질문이 등록되었습니다",
-          description: "답변이 등록되면 알려드리겠습니다.",
         })
         setFormData({ title: "", content: "" })
       } else {
@@ -66,6 +65,7 @@ export function QuestionForm({ cookieData }: IfElseProblem1Props) {
       })
     } finally {
       setIsSubmitting(false)
+      window.location.href = `/questions`;
     }
   }
 
